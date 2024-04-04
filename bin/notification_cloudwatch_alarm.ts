@@ -4,5 +4,5 @@ import { App } from "aws-cdk-lib"
 import { LambdaStack } from "../lib/lambda/index";
 
 const app = new App();
-new LambdaStack(app, 'LambdaStack', {
-});
+const prefix = "Nca";
+new LambdaStack(app, 'LambdaStack', { prefix, functionName: "notificationCloudWatchAlarm" });
