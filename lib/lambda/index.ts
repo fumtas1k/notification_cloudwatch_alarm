@@ -2,6 +2,7 @@ import { Duration, Stack } from "aws-cdk-lib";
 import { AssetCode, Function, LayerVersion, Runtime } from "aws-cdk-lib/aws-lambda";
 import { Construct } from "constructs";
 import { LambdaStackProps } from "./props";
+import { SnsEventSource } from "aws-cdk-lib/aws-lambda-event-sources";
 
 export class LambdaStack extends Stack {
   ARN = "arn:aws:lambda:ap-northeast-1:133490724326:layer:AWS-Parameters-and-Secrets-Lambda-Extension:11";
@@ -20,5 +21,6 @@ export class LambdaStack extends Stack {
       timeout: Duration.seconds(10),
       layers: [lambdaLayer]
     });
+    lambdaFn.addEventSource(new SnsEventSource(props.topic));
   }
 }
